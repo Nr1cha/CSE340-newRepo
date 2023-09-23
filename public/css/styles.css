@@ -6,7 +6,7 @@
 }
 
 /* main body */
-body  {
+body {
   /* background-image: url(../images/site/checkerboard.jpg); */
   background-image: url(../images/vehicles/aerocar.jpg);
 
@@ -14,10 +14,10 @@ body  {
 
 
 /* page content */
-#wrapper  {
+#wrapper {
   display: block;
   margin: auto;
-  width: 70%;
+  width: 100%;
   background-color: white;
   border: 4px solid #05afd3;
   border-radius: 8px;
@@ -31,21 +31,14 @@ body  {
 }
 
 .mainContainer {
-  display: grid;
-  grid-template-rows: auto auto;
+  display: block;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
   grid-gap: 20px;
   max-width: 100%;
   border: 4px solid gray;
 }
 
-/* broken for now */
-/* larger than x pixles */
-@media (min-width: 768px) {
-  #mainContainer {
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    grid-template-rows: auto auto; /* Single auto-sized row */
-    text-align: initial; /* Reset text alignment */
-  }
 
 
 .heroMainContainer {
@@ -57,27 +50,52 @@ body  {
 }
 
 .heroMainContainer img {
+  position: relative;
   grid-column: span 2;
   padding: 20px;
   border: 4px solid magenta;
 }
 
 .heroCard {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  bottom: 6%;
-  right: 72%;
+  bottom: 58%;
+  right: 58%;
   width: 209px;
   border: 8px solid blue;
   background-color: rgba(255, 255, 255, 0.3);
 }
 
 .heroUpgrades {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Example grid with 2 columns */
+  gap: 10px;
+  /* Adjust the gap between items as needed */
   border: 4px solid green;
   grid-row: 2;
   grid-column: 1;
   padding: 20px;
 }
+
+.subTitle {
+  grid-column: span 2;
+}
+
+.imageUpgrade {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: green;
+}
+
+.imageUpgrade>img {
+  flex-grow: 1;
+  align-self: center;
+  width: 50px;
+  height: 50px;
+}
+
 .heroReviews {
   border: 4px solid red;
   grid-row: 2;
@@ -85,11 +103,17 @@ body  {
   padding: 20px;
 }
 
+.heroReviews>ul>li {
+  display: list-item;
+  list-style-type: disc;
+  font-size: 20px;
+}
+
 /* big title */
 .siteName {
-        font-size: 2rem;
-        color: #242432;
-    }
+  font-size: 2rem;
+  color: #242432;
+}
 
 .siteName a {
   text-decoration: none;
@@ -117,7 +141,7 @@ ul {
 li {
   display: inline-block;
   padding: 12px;
-  
+
 }
 
 li a {
@@ -128,3 +152,37 @@ li a {
   /* background-color: #242432; */
 }
 
+/* broken for now */
+/* larger than x pixles */
+@media (min-width: 1210px) {
+  .mainContainer {
+    /* Two columns */
+    grid-template-columns: 1fr 1fr;
+    /* Single auto-sized row */
+    grid-template-rows: auto auto;
+    /* Reset text alignment */
+    text-align: initial;
+  }
+  #wrapper {
+    width: 70%;
+  }
+  /* these need to be stacked */
+  .mainContainer {
+    /* one column */
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    max-width: 100%;
+    border: 4px solid gray;
+  }
+  .heroMainContainer {
+
+  }
+  .heroUpgrades {
+    
+  }
+  .heroReviews {
+    
+  }
+}
