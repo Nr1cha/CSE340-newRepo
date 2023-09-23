@@ -8,7 +8,7 @@
 /* main body */
 body {
   /* background-image: url(../images/site/checkerboard.jpg); */
-  background-image: url(../images/vehicles/aerocar.jpg);
+  background-image: url(../images/site/checkerboard.jpg);
 
 }
 
@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 100vh;
+  height: 75vh;
 }
 
 .mainContainer {
@@ -42,6 +42,7 @@ body {
 
 
 .heroMainContainer {
+  position: relative;
   padding: 20px;
   grid-column: span 2;
   align-items: center;
@@ -54,14 +55,16 @@ body {
   grid-column: span 2;
   padding: 20px;
   border: 4px solid magenta;
+
+  width: 100%;
 }
 
 .heroCard {
+  font-size: 10px;
   position: absolute;
-  z-index: 2;
-  bottom: 58%;
-  right: 58%;
-  width: 209px;
+  top: 22%;
+  left: -12%;
+  width: 200px;
   border: 8px solid blue;
   background-color: rgba(255, 255, 255, 0.3);
 }
@@ -86,7 +89,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: green;
+  background-color: #15b2d4;
 }
 
 .imageUpgrade>img {
@@ -152,21 +155,17 @@ li a {
   /* background-color: #242432; */
 }
 
-/* broken for now */
-/* larger than x pixles */
-@media (min-width: 1210px) {
-  .mainContainer {
-    /* Two columns */
-    grid-template-columns: 1fr 1fr;
-    /* Single auto-sized row */
-    grid-template-rows: auto auto;
-    /* Reset text alignment */
-    text-align: initial;
-  }
+@media (min-width: 1024px) {
   #wrapper {
     width: 70%;
   }
-  /* these need to be stacked */
+
+  .mainContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    text-align: initial;
+  }
+
   .mainContainer {
     /* one column */
     display: grid;
@@ -176,13 +175,12 @@ li a {
     max-width: 100%;
     border: 4px solid gray;
   }
-  .heroMainContainer {
 
+  .heroCard {
+    font-size: 22px;
+    top: 16%;
+    left: 6%;
+    width: 209px;
   }
-  .heroUpgrades {
-    
-  }
-  .heroReviews {
-    
-  }
+
 }
