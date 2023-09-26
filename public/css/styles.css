@@ -168,11 +168,6 @@ li a {
   #wrapper {
     width: 70%;
   }
-
-  .mainContainer {
-    /* grid-template-columns: 1fr 1fr; */
-    /* grid-template-rows: auto auto; */
-  }
   
   .mainContainer {
     /* one column */
