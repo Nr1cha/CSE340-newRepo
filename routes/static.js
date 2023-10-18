@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ caseSensitive: false });
 
 // Static Routes
 // Set up "public" folder / subfolders for static files
