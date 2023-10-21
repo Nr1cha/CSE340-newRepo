@@ -32,6 +32,7 @@ app.use("/inv", inventoryRoute)
 // app.get("/", function (req, res) {
 //   res.render("index", { title: "Home" })
 // })
+app.use("/err", utilities.handleErrors())
 
 // File Not Found Route - must be last route in list 
 app.use(async (req, res, next) => {

@@ -29,7 +29,6 @@ Util.getNav = async function (req, res, next) {
 * Build the classification view HTML
 * ************************************ */
 Util.buildClassificationGrid = async function (data) {
-    console.log({ data, location: 'index.js:32' })
     let grid
     if (data?.length > 0) {
         grid = '<ul id="inv-display">'
