@@ -22,7 +22,8 @@ body {
 
   border-radius: 8px;
 }
-#wrapper > main > p {
+
+#wrapper>main>p {
   font-size: 2em;
   font-weight: bold;
 }
@@ -164,13 +165,87 @@ li a {
   /* background-color: #242432; */
 }
 
+/* inventory cards display */
+.vehicleInvName>a {
+  color: black;
+}
+
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  gap: 20px;
+  justify-content: center;
+  /* width: 300px; */
+}
+
+.vehicleCard {
+  flex-direction: column;
+  box-shadow: 0px 1px 5px grey;
+  /* width: 300px; */
+}
+
+/* card details view */
+.vehicleContainer {
+  /*parent*/
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+}
+
+.detailsContent {
+  box-shadow: 0px 1px 5px grey;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  align-items: flex-start;
+  /* font-size: 1em; */
+}
+
+.vmake,
+.vmodel,
+.vyear {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.errImage {
+  display: block;
+  margin: auto;
+  height: 50%;
+  width: 50%;
+}
+
+/* inside query is a large view */
+@media only screen and (min-width: 768px) {
+  .heroCard {
+    font-size: 22px;
+    top: 19%;
+    left: 7%;
+    width: 209px;
+  }
+
+  .vehicleContainer {
+    flex-direction: row;
+  }
+
+  .detailsContent {
+    flex-direction: column;
+  }
+
+}
+
+/* 
 @media (min-width: 1024px) {
   #wrapper {
     width: 70%;
   }
-  
+
   .mainContainer {
-    /* one column */
+    one column
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
@@ -190,14 +265,12 @@ li a {
     font-size: 22px;
   }
 
-}
-
-@media (min-width: 768px) {
-  .heroCard {
-    font-size: 22px;
-    top: 19%;
-    left: 7%;
-    width: 209px;
+  .vehicleContainer {
+    flex-direction: row;
   }
 
-}
+  .detailsContent {
+    flex-direction: column;
+  }
+
+} */

@@ -28,20 +28,21 @@ Util.getNav = async function (req, res, next) {
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
+// vehicle inventory list page
 Util.buildClassificationGrid = async function (data) {
     let grid
     if (data?.length > 0) {
         grid = '<ul id="inv-display">'
         data.forEach(vehicle => {
-            grid += '<li>'
+            grid += '<li class="vehicleCard" >'
             grid += '<a href="../../inv/detail/' + vehicle.inv_id
                 + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
-                + 'details"><img src="' + vehicle.inv_thumbnail
-                + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
+                + 'details"><img class="vehImage1" src="' + vehicle.inv_thumbnail
+                + '" alt=" ' + vehicle.inv_make + ' ' + vehicle.inv_model
                 + ' on CSE Motors" /></a>'
             grid += '<div class="namePrice">'
             grid += '<hr />'
-            grid += '<h2>'
+            grid += '<h2 class="vehicleInvName">'
             grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View '
                 + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
                 + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
@@ -62,26 +63,29 @@ Util.buildClassificationGrid = async function (data) {
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
- **************************************** */
+ ******************************************/
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 
 /* **************************************
 * Build the vehicle details view HTML
 * ************************************ */
+// single vehicle details page
 Util.buildVehicleDetailInfo = async function (data) {
     if (data?.[0]) {
         let vehicle = data[0]
         let grid = `
             <div class="vehicleContainer">
-                <img src="${vehicle.inv_image}" alt=" picture of ${vehicle.inv_make} ${vehicle.inv_model}">
-                <p class="vdesc vInfo">Description: ${vehicle.inv_description}</p>
-                <p class="vmake vInfo">Make: ${vehicle.inv_make}</p>
-                <p class="vmodel vInfo">Model: ${vehicle.inv_model}</p>
-                <p class="vmileage vInfo">Mileage: ${vehicle.inv_miles}</p>
-                <p class="vcolor vInfo">Color: ${vehicle.inv_color}</p>
-                <p class="vyear vInfo">Year: ${vehicle.inv_year}</p>
-                <p class="vprice vInfo">Price: ${vehicle.inv_price}</p>
+                <img class ="vehiclaDetailImage" src="${vehicle.inv_image}" alt=" picture of ${vehicle.inv_make}">
+                <div class="detailsContent">
+                    <p class="vdesc vInfo">Description: ${vehicle.inv_description}</p>
+                    <p class="vmake vInfo">Make: ${vehicle.inv_make}</p>
+                    <p class="vmodel vInfo">Model: ${vehicle.inv_model}</p>
+                    <p class="vyear vInfo">Year: ${vehicle.inv_year}</p>
+                    <p class="vprice vInfo">Price: ${Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicle.inv_price)}</p>
+                    <p class="vmileage vInfo">Mileage: ${Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>
+                    <p class="vcolor vInfo">Color: ${vehicle.inv_color}</p>
+                </div>
             </div>
         `
         return grid;
