@@ -95,6 +95,31 @@ Util.buildVehicleDetailInfo = async function (data) {
     }
 }
 
+/****************************************
+* Build the login view page
+* ***************************************/
+// login form page
+Util.buildLogin = async function () {
+    let loginView = `
+                <form class="loginForm Form" action="login" method="post">
+                <div class="loginForm form">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="account_email" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="account_password" required>
+
+                    <button type="submit">Login</button>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1">
+                    <span class="accnt">No account? <a href="#">Sign-up</a></span>
+                </div>
+            </form>
+        `
+    return loginView;
+}
+
 
 
 module.exports = Util

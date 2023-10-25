@@ -1,0 +1,24 @@
+<!-- content heading -->
+<% if (title){ %>
+    <h1>
+        <%=title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+        <form class="loginForm Form" action="login" method="post">
+            <div class="loginFields fields">
+                <label for="email"><b>Email</b></label>
+                <input type="email" placeholder="Enter Email" name="account_email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="account_password" required>
+
+                <button type="submit">Login</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <span class="accnt">No account? <a href="#">Sign-up</a></span>
+            </div>
+        </form>
+
+
+        <%- messages() %>
