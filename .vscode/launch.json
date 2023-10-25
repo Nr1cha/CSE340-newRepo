@@ -1,0 +1,10 @@
+{
+    "configurations": [
+    {
+        "command": "pnpm start",
+        "name": "Run pnpm debugger",
+        "request": "launch",
+        "type": "node-terminal"
+    }
+    ]
+}
