@@ -5,18 +5,25 @@
     </h1>
     <% } else { res.redirect('/') } %>
         <form class="loginForm Form" action="login" method="post">
-            <div class="loginFields fields">`
-                <label for="email"><b>Email</b></label>
+            <div class="loginFields fields">
+                <label for="name"><b>First name</b></label>
+                <input type="account_firstname" placeholder="Enter first name" name="account_firstname" required>
+
+                <label for="name"><b>Last name</b></label>
+                <input type="account_lastname" placeholder="Enter last name" name="account_lastname" required>
+
+                <label for="email"><b>Email address</b></label>
                 <input type="account_email" placeholder="Enter Email" name="account_email" required>
+
 
                 <label for="psw"><b>Password</b></label>
                 <input type="account_password" placeholder="Enter Password" name="account_password" required>
 
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
-                <span class="accnt">No account? <a href="/account/registration">Sign-up</a></span>
+                <span class="accnt">No account? <a href="/account/register">Sign-up</a></span>
             </div>
         </form>
 
