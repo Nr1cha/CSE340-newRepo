@@ -5,12 +5,15 @@
     </h1>
     <% } else { res.redirect('/') } %>
         <form class="loginForm Form" action="login" method="post">
-            <div class="loginFields fields">`
-                <label for="email"><b>Email</b></label>
-                <input type="account_email" placeholder="Enter Email" name="account_email" required>
+            <div class="loginFields fields">
+                <label for="accountEmail"><b>Email</b></label>
+                <input type="email" placeholder="Enter Email" name="account_email" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="account_password" placeholder="Enter Password" name="account_password" required>
+                <label for="accountPassword"><b>Password</b></label><span>There must be at least 12 characters, one must
+                    be a number, one must be a lowercase letter, one must be a capital letter, and one must be a
+                    non-alphanumeric character.</span>
+                <input type="password" placeholder="Enter Password" name="account_password" required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
                 <button type="submit">Login</button>
             </div>
