@@ -6,12 +6,12 @@ const accountModel = require("../models/account-model")
  * *************************************** */
 async function buildLogin(req, res, next) {
     let nav = await utilities.getNav();
-    // const loginView = await utilities.buildLogin()
+    const loginView = await utilities.buildLogin()
     req.flash("notice", "This is a flash message.")
     res.render("account/login", {
         title: "Login",
         nav,
-        // loginView,
+        loginView,
     });
 }
 
@@ -23,6 +23,7 @@ async function buildRegister(req, res, next) {
     res.render("account/register", {
         title: "Register",
         nav,
+        errors: null,
     })
 }
 

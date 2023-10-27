@@ -4,11 +4,19 @@ const express = require("express")
 const router = new express.Router()
 const utilities = require("../utilities") // this is my connection to the index.
 const accountController = require("../controllers/accountController")
+const regValidate = require('../utilities/account-validation')
 
 // Route to build account login page
 router.get("/login", utilities.handleErrors(accountController.buildLogin)); // build the accountController out more then come back and finish this
 router.get("/registration", utilities.handleErrors(accountController.buildRegister));
 // Route to build the register
-router.post('/register', utilities.handleErrors(accountController.registerAccount))
+
+// Process the registration data
+router.post(
+    "/register",
+    regValidate.registationRules(),
+    regValidate.checkRegData,
+    utilities.handleErrors(accountController.registerAccount)
+)
 
 module.exports = router;
