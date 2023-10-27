@@ -1,10 +1,17 @@
 <!-- content heading -->
 <% if (title){ %>
-    <h1>
-        <%=title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-
-        <%=message %>
-            <!-- Image by storyset on Freepik -->
-            <a><img class="errImage" src="/images/site/404Camp.jpg" alt="picture of fire"></a>
+<h1><%=title %></h1>
+<% } else { res.redirect('/') } %> 
+<% if (message == 'Oh no! There was a crash. Maybe try a different route?'){ %>
+<img
+    class="errImage"
+    src="/images/site/500-error.jpeg"
+    alt="picture of error"/>
+<% } else { %>
+    <img
+    class="errImage"
+    src="/images/site/404Camp.jpg"
+    alt="picture of error"/>
+    
+<% } %> 
+<%=message %>

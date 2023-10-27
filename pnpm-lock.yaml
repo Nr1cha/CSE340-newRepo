@@ -26,6 +26,9 @@ dependencies:
   express-ejs-layouts:
     specifier: ^2.5.1
     version: 2.5.1
+  express-messages:
+    specifier: ^1.0.1
+    version: 1.0.1
   express-session:
     specifier: ^1.17.3
     version: 1.17.3
@@ -320,6 +323,11 @@ packages:
 
   /express-ejs-layouts@2.5.1:
     resolution: {integrity: sha512-IXROv9n3xKga7FowT06n1Qn927JR8ZWDn5Dc9CJQoiiaaDqbhW5PDmWShzbpAa2wjWT1vJqaIM1S6vJwwX11gA==}
+    dev: false
+
+  /express-messages@1.0.1:
+    resolution: {integrity: sha512-twwOvH1K0W7pPO/bz/Lq85GULnnZPQSPX3eLr7VRJyhQW9a+2vj9QI28r/AQhMu6bnNZkpxB/QflsDQi3hI7lQ==}
+    engines: {node: '>= 0.10.0'}
     dev: false
 
   /express-session@1.17.3:
