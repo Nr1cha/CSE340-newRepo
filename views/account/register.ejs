@@ -7,13 +7,13 @@
         <form class="loginForm Form" action="/account/register" method="post">
             <div class="loginFields fields">
                 <label for="name"><b>First name</b></label>
-                <input type="text" placeholder="Enter first name" name="account_firstname" required>
+                <input type="text" placeholder="Enter first name" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>" >
 
                 <label for="name"><b>Last name</b></label>
-                <input type="text" placeholder="Enter last name" name="account_lastname" required>
+                <input type="text" placeholder="Enter last name" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>" >
 
                 <label for="email"><b>Email address</b></label>
-                <input type="email" placeholder="Enter Email" name="account_email" required>
+                <input type="email" placeholder="Enter Email" name="account_email" id="accountEmail" required value="<%= locals.account_email %>" >
 
 
                 <label for="accountPassword"><b>Password</b></label><span>There must be at least 12 characters, one must

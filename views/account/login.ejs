@@ -4,7 +4,7 @@
         <%=title %>
     </h1>
     <% } else { res.redirect('/') } %>
-        <form class="loginForm Form" action="login" method="post">
+        <form class="loginForm Form" action="/account/login" method="post">
             <div class="loginFields fields">
                 <label for="accountEmail"><b>Email</b></label>
                 <input type="email" placeholder="Enter Email" name="account_email" required>
