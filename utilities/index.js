@@ -121,5 +121,18 @@ Util.buildLogin = async function () {
 }
 
 
+/****************************************
+* Build the Management view page
+* ***************************************/
+// management page
+Util.buildManagement = async function () {
+    let managementView = `
+        <a href="#">Classification View</a>
+        <a href="#">Inventory View</a>
+        `
+    return managementView;
+}
+
+
 
 module.exports = Util
