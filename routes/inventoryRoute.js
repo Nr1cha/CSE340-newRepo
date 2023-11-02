@@ -11,7 +11,7 @@ router.get("/detail/:vehicleId", utilities.handleErrors(invController.buildByVeh
 // management view
 router.get("/", utilities.handleErrors(invController.buildManagementView));
 // add classification view
-// router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
+router.get("/add-class", utilities.handleErrors(invController.buildAddClassificationView));
 // add new inventory
 // router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
