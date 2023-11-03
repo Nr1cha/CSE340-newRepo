@@ -26,7 +26,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByVehicleId = async function (req, res, next) {
     const vehicle_id = req.params.vehicleId
     const data = await invModel.getInventoryByVehicleId(vehicle_id)
-    const grid = await utilities.buildVehicleDetailInfo(data)
+    const grid = await utilities.buildVehicleDetailInfo(data, classData)
     let nav = await utilities.getNav()
     const className = data[0].inv_make + " " + data[0].inv_model
     res.render(`${inventoryViewsPath}vehicle`, {
@@ -71,12 +71,13 @@ invCont.buildAddClassificationView = async function (req, res, next) {
  *  Build add-inventory view page
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
-    // const addInventory = await utilities.buildAddInventory()
+    const classData = await invModel.getClassificationId()
     let nav = await utilities.getNav()
     // req.flash("notice", "This is a flash message.");
     res.render(`${inventoryViewsPath}add-inventory`, { //path to file dont forget this
         title: "Add New Inventory",
         nav,
+        classData,
     })
 }
 
