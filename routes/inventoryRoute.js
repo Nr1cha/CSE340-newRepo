@@ -20,4 +20,12 @@ router.get("/add-class", utilities.handleErrors(invController.buildAddClassifica
 // add new inventory
 router.get("/add-inv", utilities.handleErrors(invController.buildAddInventory));
 
+// Process the add_inv data
+router.post(
+    "/register",
+    // regValidate.registationRules(),
+    // regValidate.checkRegData,
+    utilities.handleErrors(invController.registerVehicle)
+)
+
 module.exports = router;

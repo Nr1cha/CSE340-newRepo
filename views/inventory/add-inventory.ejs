@@ -3,7 +3,7 @@
         <%=title %>
     </h1>
     <% } else { res.redirect('/') } %>
-    <form class="inventoryForm Form" action="inventory" method="post">
+    <form class="inventoryForm Form" action="/inv/register" method="post">
         <div class="inventoryForm form">
             <label for="modelSelect"><b>Choose a Classification</b></label>
             <select id="modelSelect" name="classification_id">
@@ -44,10 +44,7 @@
             <label for="color"><b>Color</b></label>
             <input type="text" placeholder="enter color" name="inv_color" required value="<%= locals.inv_color%>" >
     
-            <label for="classificationID"><b>Classification</b></label>
-            <input type="text" placeholder="enter classification id" name="classification_id" required>
-    
-            <button type="submit"> Submit Inventory </button>
+            <button type="submit"> Add Vehicle </button>
         </div>
       </form>
 
