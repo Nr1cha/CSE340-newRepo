@@ -184,54 +184,8 @@ Util.buildAddClassification = async function () {
 /****************************************
  * Build the add-inventory page
  * ***************************************/
-// login form page
+// add-inventory page
 Util.buildAddInventory = async function () {
-  let addInventory = `
-    <form class="inventoryForm Form" action="inventory" method="post">
-    <div class="inventoryForm form">
-        <label for="id"><b>ID</b></label>
-        <input type="text" placeholder="Enter inventory ID" name="inv_id" required>
-
-        <label for="make"><b>Make</b></label>
-        <input type="text" placeholder="Min of 3 characters" name="inv_make" required>
-
-        <label for="model"><b>Model</b></label>
-        <input type="text" placeholder="Min of 3 characters" name="inv_model" required>
-        
-        <label for="year"><b>Year</b></label>
-        <input type="text" placeholder="4-digit year" name="inv_year" required>
-
-        <!-- come back to the description -->
-        <label for="description"><b>Description</b></label>
-        <input type="text" placeholder="Add description" name="inv_description" required>
-
-        <!-- come back to image -->
-        <label for="image"><b>Image Path</b></label>
-        <input type="text" placeholder="/images/vehicles/imageExample.png" name="inv_image" required>
-
-        <label for="thumbnail"><b>Thumbnail Path</b></label>
-        <input type="text" placeholder="/images/vehicles/thumbnail.png" name="inv_thumbnail" required>
-
-        <label for="price"><b>Price</b></label>
-        <input type="number" placeholder="decimal or integer" name="inv_price" required>
-
-        <label for="miles"><b>Miles</b></label>
-        <input type="number" placeholder="decimal or integer" name="inv_miles" required>
-
-        <label for="color"><b>Color</b></label>
-        <input type="text" placeholder="enter color" name="inv_color" required>
-
-        <label for="classificationID"><b>Classification</b></label>
-        <input type="text" placeholder="enter classification id" name="classification_id" required>
-
-        <button type="submit">Submit</button>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-        <span class="accnt">No account? <a href="#">Sign-up</a></span>
-    </div>
-  </form>
-        `;
   return addInventory;
 };
 
