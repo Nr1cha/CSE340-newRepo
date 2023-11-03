@@ -13,6 +13,6 @@ router.get("/", utilities.handleErrors(invController.buildManagementView));
 // add classification view
 router.get("/add-class", utilities.handleErrors(invController.buildAddClassificationView));
 // add new inventory
-// router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
+router.get("/add-inv", utilities.handleErrors(invController.buildAddInventory));
 
 module.exports = router;
