@@ -88,7 +88,6 @@ invCont.buildAddInventory = async function (req, res, next) {
  *  Process add classification
  * ****************************************/
 invCont.registerClassification = async function (req, res) {
-  let nav = await utilities.getNav();
   const {
     classification_name,
   } = req.body;
@@ -96,6 +95,8 @@ invCont.registerClassification = async function (req, res) {
   const regResult = await invModel.writeClassificationToDatabase(
     classification_name,
   );
+  let nav = await utilities.getNav();
+
 
   // const classData = await invModel.getClassificationId();
   const addClassificationView = await utilities.buildAddClassification();

@@ -219,7 +219,7 @@ li a {
   width: 50%;
 }
 
-.loginForm {
+.loginForm, .Form {
   background-color: lightblue;
   padding: 40px;
   display: flex;
