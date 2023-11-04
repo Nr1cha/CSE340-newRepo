@@ -63,6 +63,8 @@ invCont.buildAddClassificationView = async function (req, res, next) {
     title: "Add New Classification",
     nav,
     addClassificationView,
+    errors: null
+
   });
 };
 
@@ -78,6 +80,7 @@ invCont.buildAddInventory = async function (req, res, next) {
     title: "Add New Inventory",
     nav,
     classData,
+    errors: null
   });
 };
 
@@ -105,6 +108,8 @@ invCont.registerClassification = async function (req, res) {
       title: "Add Classification",
       nav,
       addClassificationView,
+      errors: null
+
     });
   } else {
     req.flash("notice", "Sorry, the registration failed.");
@@ -112,6 +117,8 @@ invCont.registerClassification = async function (req, res) {
       title: "Add Classification",
       nav,
       addClassificationView,
+      errors: null
+
     });
   }
 }
@@ -158,6 +165,8 @@ invCont.registerVehicle = async function (req, res) {
       title: "Add Inventory",
       nav,
       classData,
+      errors: null
+
     });
   } else {
     req.flash("notice", "Sorry, the registration failed.");
@@ -165,6 +174,8 @@ invCont.registerVehicle = async function (req, res) {
       title: "Add Inventory",
       nav,
       classData,
+      errors: null
+
     });
   }
 }
