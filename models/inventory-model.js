@@ -64,16 +64,29 @@ async function getClassificationId() {
 }
 
 /*******************************
+*   add classification from /inv form to database
+WRITE TO THE DATABASE
+* *****************************/
+async function writeClassificationToDatabase(classification_name) {
+    try {
+        const sql = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *"
+        return await pool.query(sql, [classification_name])
+    } catch (error) {
+        return error.message
+    }
+}
+
+/*******************************
 *   add inventory from add-inv form to database
 WRITE TO THE DATABASE
 * *****************************/
-// async function registerAccount(account_firstname, account_lastname, account_email, account_password) {
-//     try {
-//         const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
-//         return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
-//     } catch (error) {
-//         return error.message
-//     }
-// }
+async function writeAdd_invToDatabase(classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color) {
+    try {
+        const sql = "INSERT INTO inventory (classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
+        return await pool.query(sql, [classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color])
+    } catch (error) {
+        return error.message
+    }
+}
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, getClassificationId }
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, getClassificationId, writeClassificationToDatabase, writeAdd_invToDatabase }

@@ -166,16 +166,16 @@ Util.buildManagement = async function () {
 // management page
 Util.buildAddClassification = async function () {
   let addClassificationView = `
-        <div class="Form">
-            <form action="add-classification">
-                <p>Field is required</p>
-                <p>Classification Name</p>
-                <p>Name must be alphabetic characters only.</p>
-                <label for="addClassificationView"></label>
-                <input type="text" placeholder="Add Classification">
-                <button type="submit">Add Classification</button>
-            </form>
-        </div>
+    <div class="Form">
+    <form action="/inv/register/classification" method="post">
+        <p>Field is required</p>
+        <p>Classification Name</p>
+        <p>Name must be alphabetic characters only.</p>
+        <label for="addClassification"></label>
+        <input type="text" placeholder="Add Classification" name="classification_name">
+        <button type="submit">Add Classification</button>
+    </form>
+  </div>
         `;
   return addClassificationView;
 };
