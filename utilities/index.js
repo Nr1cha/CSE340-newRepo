@@ -154,8 +154,8 @@ Util.buildLogin = async function () {
 // management page
 Util.buildManagement = async function () {
   let managementView = `
-        <a href="#">Classification View</a>
-        <a href="#">Inventory View</a>
+        <a href="/inv/add-class">Classification View</a>
+        <a href="/inv/add-inv">Inventory View</a>
         `;
   return managementView;
 };
