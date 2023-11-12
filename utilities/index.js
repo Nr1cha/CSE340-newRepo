@@ -96,23 +96,21 @@ Util.buildVehicleDetailInfo = async function (data) {
     let vehicle = data[0];
     let grid = `
             <div class="vehicleContainer">
-                <img class ="vehiclaDetailImage" src="${
-                  vehicle.inv_image
-                }" alt=" picture of ${vehicle.inv_make}">
+                <img class ="vehiclaDetailImage" src="${vehicle.inv_image
+      }" alt=" picture of ${vehicle.inv_make}">
                 <div class="detailsContent">
-                    <p class="vdesc vInfo">Description: ${
-                      vehicle.inv_description
-                    }</p>
+                    <p class="vdesc vInfo">Description: ${vehicle.inv_description
+      }</p>
                     <p class="vmake vInfo">Make: ${vehicle.inv_make}</p>
                     <p class="vmodel vInfo">Model: ${vehicle.inv_model}</p>
                     <p class="vyear vInfo">Year: ${vehicle.inv_year}</p>
                     <p class="vprice vInfo">Price: ${Intl.NumberFormat(
-                      "en-US",
-                      { style: "currency", currency: "USD" }
-                    ).format(vehicle.inv_price)}</p>
+        "en-US",
+        { style: "currency", currency: "USD" }
+      ).format(vehicle.inv_price)}</p>
                     <p class="vmileage vInfo">Mileage: ${Intl.NumberFormat(
-                      "en-US"
-                    ).format(vehicle.inv_miles)}</p>
+        "en-US"
+      ).format(vehicle.inv_miles)}</p>
                     <p class="vcolor vInfo">Color: ${vehicle.inv_color}</p>
                 </div>
             </div>
@@ -170,9 +168,9 @@ Util.buildAddClassification = async function () {
     <form action="/inv/register/classification" method="post">
         <p>Field is required</p>
         <p>Classification Name</p>
-        <p>Name must be alphabetic characters only.</p>
-        <label for="addClassification"></label>
-        <input type="text" placeholder="Add Classification" name="classification_name">
+        <label for="addClassification">Name must be alphabetic characters only.
+        <input id="addClassification" type="text" placeholder="Add Classification" name="classification_name">
+        </label>
         <button type="submit">Add Classification</button>
     </form>
   </div>
