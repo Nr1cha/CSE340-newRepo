@@ -8,9 +8,9 @@
                 <label for="modelSelect"><b>Choose a Classification</b></label>
                 <select id="modelSelect" name="classification_id">
                     <% classData.forEach(classification=> { %>
-                        <option value="<%= classification.id %>"
-                            selected="<%= classification.id === locals.classification_id ? 'selected' : '' %>">
-                            <%= classification.name %>
+                        <option value="<%= classification.id %>" <% if(classification.id==locals.classification_id){ %>
+                            selected <% } %> >
+                                <%= classification.name %>
                         </option>
                         <% }); %>
                 </select>
@@ -29,8 +29,7 @@
 
                 <!-- come back to the description -->
                 <label for="description">Description</label>
-                <textarea id="description" name="inv_description" required
-                    value="<%= locals.inv_description%>"></textarea>
+                <textarea id="description" name="inv_description" required></textarea>
 
                 <!-- come back to image -->
                 <label for="image"><b>Image Path</b></label>
@@ -46,7 +45,7 @@
                     required value="<%= locals.inv_price%>">
 
                 <label for="miles"><b>Miles</b></label>
-                <input id="miles" type="number" min="0" step="0" placeholder="integer" name="inv_miles" required
+                <input id="miles" type="number" min="0" placeholder="integer" name="inv_miles" required
                     value="<%= locals.inv_miles%>">
 
                 <label for="color"><b>Color</b></label>
