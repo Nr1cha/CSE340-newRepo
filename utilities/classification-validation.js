@@ -11,6 +11,7 @@ validate.registationRules = () => {
     body("classification_name")
       .trim()
       .isAlpha()
+      .withMessage("must be alpha characters only")
       .isLength({ min: 1 })
       .withMessage("A valid name is required."),
   ];

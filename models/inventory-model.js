@@ -49,7 +49,7 @@ async function getInventoryByVehicleId(vehicle_id) {
  *  Get list of classification_id's
 QUERY THE DATABASE FOR A LIST OF ID'S
  * ************************** */
-async function getClassificationId() {
+async function getClassificationIds() {
     try {
         const data = await pool.query(
             `SELECT DISTINCT classification_id AS id, classification_name AS name
@@ -89,4 +89,26 @@ async function writeAdd_invToDatabase(classification_id, inv_make, inv_model, in
     }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, getClassificationId, writeClassificationToDatabase, writeAdd_invToDatabase }
+async function classificationExists(classification_id) {
+    try {
+        const sql = `
+            SELECT classification_id FROM classification 
+            WHERE classification_id = $1
+        `
+        const classID = await pool.query(sql, [classification_id])
+        return classID.rowCount
+    } catch (error) {
+        return error.message
+    }
+}
+
+
+module.exports = {
+    getClassifications,
+    getInventoryByClassificationId,
+    getInventoryByVehicleId,
+    getClassificationIds,
+    writeClassificationToDatabase,
+    writeAdd_invToDatabase,
+    classificationExists
+}

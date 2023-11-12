@@ -9,15 +9,29 @@ const invModel = require("../models/inventory-model");
  * ********************************* */
 validate.registationRules = () => {
   return [
-    // firstname is required and must be string
-    body("inv_make")
+
+    // TODO: validate classification_id using classificationExists method in inventory-model.js
+    body("classification_id")
       .trim()
       .isLength({ min: 1 })
-      .withMessage("Please provide a valid make."), // on error this message is sent.
+      .withMessage("Please provide a valid classification ID.")
+      .custom(async (classification_id) => {
+        const classificationExists = await invModel.classificationExists(
+          classification_id
+        );
+        if (!classificationExists) {
+          throw new Error("Classification does not exist. Please provide a a valid classification ID.")
+        }
+      }),
+
+    body("inv_make")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Please provide a valid make."),
 
     body("inv_model")
       .trim()
-      .isLength({ min: 1 })
+      .isLength({ min: 3 })
       .withMessage("Please provide a valid model."),
 
     body("inv_year")
@@ -64,7 +78,7 @@ validate.registationRules = () => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-  const classData = await invModel.getClassificationId();
+  const classData = await invModel.getClassificationIds();
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, } = req.body;
   let errors = [];
   errors = validationResult(req);

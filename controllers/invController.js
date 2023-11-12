@@ -26,7 +26,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByVehicleId = async function (req, res, next) {
   const vehicle_id = req.params.vehicleId;
   const data = await invModel.getInventoryByVehicleId(vehicle_id);
-  const grid = await utilities.buildVehicleDetailInfo(data, classData);
+  const grid = await utilities.buildVehicleDetailInfo(data);
   let nav = await utilities.getNav();
   const className = data[0].inv_make + " " + data[0].inv_model;
   res.render(`${inventoryViewsPath}vehicle`, {
@@ -72,7 +72,7 @@ invCont.buildAddClassificationView = async function (req, res, next) {
  *  Build add-inventory view page
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
-  const classData = await invModel.getClassificationId();
+  const classData = await invModel.getClassificationIds();
   let nav = await utilities.getNav();
   // req.flash("notice", "This is a flash message.");
   res.render(`${inventoryViewsPath}add-inventory`, {
@@ -98,12 +98,12 @@ invCont.registerClassification = async function (req, res) {
   let nav = await utilities.getNav();
 
 
-  // const classData = await invModel.getClassificationId();
+  // const classData = await invModel.getClassificationIds();
   const addClassificationView = await utilities.buildAddClassification();
   if (regResult) {
     req.flash(
       "notice",
-      `Congratulations, you\'re registered ${classification_name}.`
+      `Congratulations, you registered: ${classification_name}.`
     );
     res.status(201).render("inventory/add-classification", {
       title: "Add Classification",
@@ -156,7 +156,7 @@ invCont.registerVehicle = async function (req, res) {
     inv_color
   );
 
-  const classData = await invModel.getClassificationId();
+  const classData = await invModel.getClassificationIds();
   if (regResult) {
     req.flash(
       "notice",
