@@ -41,13 +41,11 @@ invCont.buildByVehicleId = async function (req, res, next) {
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   // const vehicle_id = req.params.vehicleId
-  const managementView = await utilities.buildManagement();
   let nav = await utilities.getNav();
   // req.flash("notice", "This is a flash message.");
   res.render(`${inventoryViewsPath}management`, {
     title: "Vehicle Management",
     nav,
-    managementView,
   });
 };
 
@@ -55,16 +53,13 @@ invCont.buildManagementView = async function (req, res, next) {
  *  Build add-classification view page
  * ************************** */
 invCont.buildAddClassificationView = async function (req, res, next) {
-  const addClassificationView = await utilities.buildAddClassification();
   let nav = await utilities.getNav();
   // req.flash("notice", "This is a flash message.");
   res.render(`${inventoryViewsPath}add-classification`, {
     //path to file dont forget this
     title: "Add New Classification",
     nav,
-    addClassificationView,
     errors: null
-
   });
 };
 
@@ -99,27 +94,22 @@ invCont.registerClassification = async function (req, res) {
 
 
   // const classData = await invModel.getClassificationIds();
-  const addClassificationView = await utilities.buildAddClassification();
   if (regResult) {
     req.flash(
       "notice",
       `Congratulations, you registered: ${classification_name}.`
     );
-    res.status(201).render("inventory/add-classification", {
-      title: "Add Classification",
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
       nav,
-      addClassificationView,
       errors: null
-
     });
   } else {
     req.flash("notice", "Sorry, the registration failed.");
     res.status(501).render("inventory/add-classification", {
       title: "Add Classification",
       nav,
-      addClassificationView,
       errors: null
-
     });
   }
 }
@@ -157,15 +147,15 @@ invCont.registerVehicle = async function (req, res) {
   );
 
   const classData = await invModel.getClassificationIds();
+
   if (regResult) {
     req.flash(
       "notice",
       `Congratulations, you\'re registered ${inv_make + " " + inv_model}.`
     );
-    res.status(201).render("inventory/add-inventory", {
-      title: "Add Inventory",
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
       nav,
-      classData,
       errors: null
 
     });

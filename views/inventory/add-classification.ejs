@@ -6,16 +6,27 @@
     <% } else { res.redirect('/') } %>
 
 
-        <!--change this-->
-        <%- addClassificationView %>
 
-            <%- messages() %>
-                <% if (errors) { %>
-                    <ul class="notice">
-                        <% errors.array().forEach(error=> { %>
-                            <li>
-                                <%= error.msg %>
-                            </li>
-                            <% }) %>
-                    </ul>
-                    <% } %>
+        <%- messages() %>
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                    <div class="Form">
+                        <form action="/inv/register/classification" method="post">
+                            <p>Field is required</p>
+                            <p>Classification Name</p>
+                            <label for="addClassification">Name must be alphabetic characters only.
+                                <input id="addClassification" type="text" placeholder="Add Classification"
+                                    name="classification_name" minlength="3" pattern="[a-zA-Z\s]+"
+                                    value="<%= locals.classification_name %>" required>
+                            </label>
+                            <button type="submit">Add Classification</button>
+                        </form>
+                    </div>

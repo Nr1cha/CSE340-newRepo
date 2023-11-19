@@ -227,6 +227,9 @@ li a {
   max-width: 40%;
   margin: auto;
 }
+.Form > li > a{
+  color: black;
+}
 
 .loginFields {
   display: inherit;

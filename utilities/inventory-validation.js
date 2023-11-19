@@ -37,13 +37,14 @@ validate.registationRules = () => {
     body("inv_year")
       .trim()
       .isNumeric()
+      .withMessage("Year must be numeric.")
       .isLength({ min: 4 })
       .withMessage("Please provide a valid year."),
 
     body("inv_description")
       .trim()
       .isLength({ min: 1 })
-      .withMessage("Please provide a valid year."),
+      .withMessage("Please provide a valid description."),
 
     body("inv_image")
       .trim()
@@ -58,12 +59,14 @@ validate.registationRules = () => {
     body("inv_price")
       .trim()
       .isNumeric()
+      .withMessage("Price must be numeric.")
       .isLength({ min: 2 })
       .withMessage("Please provide a valid price."),
 
     body("inv_miles")
       .trim()
       .isNumeric()
+      .withMessage("Miles must be numeric.")
       .isLength({ min: 1 })
       .withMessage("Please provide valid miles."),
 
@@ -79,7 +82,7 @@ validate.registationRules = () => {
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
   const classData = await invModel.getClassificationIds();
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, } = req.body;
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -88,6 +91,7 @@ validate.checkRegData = async (req, res, next) => {
       errors,
       title: "Register new vehicle",
       nav,
+      classification_id,
       inv_make,
       inv_model,
       inv_year,

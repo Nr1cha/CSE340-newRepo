@@ -22,7 +22,6 @@ validate.registationRules = () => {
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
   const { classification_name } = req.body;
-  const addClassificationView = await utilities.buildAddClassification();
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -32,7 +31,6 @@ validate.checkRegData = async (req, res, next) => {
       title: "Register Classification",
       nav,
       classification_name,
-      addClassificationView,
     });
     return;
   }

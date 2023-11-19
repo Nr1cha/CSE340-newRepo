@@ -4,9 +4,10 @@
         <%=title %>
     </h1>
     <% } else { res.redirect('/') } %>
-    
-        
-    <!--change this-->
-    <%- managementView %> 
 
         <%- messages() %>
+
+            <ul class="Form managementView">
+                <li><a href="/inv/add-class">Add Classification</a></li>
+                <li><a href="/inv/add-inv">Add Inventory</a></li>
+            </ul>

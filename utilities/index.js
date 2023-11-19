@@ -147,39 +147,6 @@ Util.buildLogin = async function () {
 };
 
 /****************************************
- * Build the Management view page
- * ***************************************/
-// management page
-Util.buildManagement = async function () {
-  let managementView = `
-        <a href="/inv/add-class">Classification View</a>
-        <a href="/inv/add-inv">Inventory View</a>
-        `;
-  return managementView;
-};
-
-/****************************************
- * Build the add-classification view page
- * ***************************************/
-// management page
-Util.buildAddClassification = async function () {
-  let addClassificationView = `
-    <div class="Form">
-    <form action="/inv/register/classification" method="post">
-        <p>Field is required</p>
-        <p>Classification Name</p>
-        <label for="addClassification">Name must be alphabetic characters only.
-        <input id="addClassification" type="text" placeholder="Add Classification" name="classification_name">
-        </label>
-        <button type="submit">Add Classification</button>
-    </form>
-  </div>
-        `;
-  return addClassificationView;
-};
-
-
-/****************************************
  * Build the add-inventory page
  * ***************************************/
 // add-inventory page
