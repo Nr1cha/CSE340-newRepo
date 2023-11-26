@@ -4,6 +4,7 @@ const utilities = require("../utilities") // this is my connection to the index.
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
+
 // Route to build account login page
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route to build the register
@@ -29,6 +30,7 @@ router.post(
 // new route
 router.get(
   "/",
+  utilities.checkLogin,
   utilities.handleErrors(accountController.accountView)
 )
 
