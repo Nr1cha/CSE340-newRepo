@@ -46,4 +46,9 @@ router.post(
   utilities.handleErrors(invController.registerVehicle)
 );
 
+//new js event
+router.get("/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+
 module.exports = router;
