@@ -47,8 +47,15 @@ router.post(
 );
 
 //new js event
-router.get("/getInventory/:classification_id",
+router.get(
+  "/getInventory/:classification_id",
   utilities.handleErrors(invController.getInventoryJSON)
-)
+);
+
+// route for an inventory item to edit
+router.get(
+  "/edit/:inventory_id",
+  utilities.handleErrors(invController.getVehicleById)
+);
 
 module.exports = router;

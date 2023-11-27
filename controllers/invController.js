@@ -190,4 +190,25 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
+
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
+invCont.getVehicleById = async function (req, res, next) {
+  let vehicleId = parseInt(req.params.inventory_id)
+  const classData = await invModel.getClassificationIds();
+  let nav = await utilities.getNav();
+  let inventory = getInventoryByVehicleId(vehicleId);
+  // req.flash("notice", "This is a flash message.");
+  res.render(`${inventoryViewsPath}edit-inventory`, {
+    //path to file dont forget this
+    title: `Edit ${inventory.inv_make} ${inventory.inv_model}`,
+    nav,
+    classData,
+    errors: null,
+    ...inventory
+  });
+};
+
+
 module.exports = invCont;
