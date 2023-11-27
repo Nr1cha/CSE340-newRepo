@@ -198,9 +198,10 @@ invCont.getVehicleById = async function (req, res, next) {
   let vehicleId = parseInt(req.params.inventory_id)
   const classData = await invModel.getClassificationIds();
   let nav = await utilities.getNav();
-  let inventory = getInventoryByVehicleId(vehicleId);
+  let inventory = (await invModel.getInventoryByVehicleId(vehicleId))[0];
+  // console.log({ inventory, "message": "inventory line 202" })
   // req.flash("notice", "This is a flash message.");
-  res.render(`${inventoryViewsPath}edit-inventory`, {
+  res.render(`${inventoryViewsPath}getVehicleById`, {
     //path to file dont forget this
     title: `Edit ${inventory.inv_make} ${inventory.inv_model}`,
     nav,
