@@ -9,8 +9,6 @@ const invModel = require("../models/inventory-model");
  * ********************************* */
 validate.registationRules = () => {
   return [
-
-    // TODO: validate classification_id using classificationExists method in inventory-model.js
     body("classification_id")
       .trim()
       .isLength({ min: 1 })
@@ -107,5 +105,39 @@ validate.checkRegData = async (req, res, next) => {
   }
   next();
 };
+
+
+/* ******************************
+ * Check errors will be directed back to the edit view
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const classData = await invModel.getClassificationIds();
+  const { inv_id, classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("inventory/getVehicleById", {
+      errors,
+      title: `Edit ${inv_make} ${inv_model}`,
+      nav,
+      inv_id,
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classData,
+    });
+    return;
+  }
+  next();
+};
+
 
 module.exports = validate;

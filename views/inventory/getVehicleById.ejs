@@ -1,3 +1,4 @@
+<script src="/js/inv-update.js"></script>
 <% if (title){ %>
     <h1>
         <%=title %>
@@ -15,7 +16,7 @@
                 </ul>
                 <% } %>
 
-                    <form class="inventoryForm Form" action="/inv/update" method="post">
+                    <form class="inventoryForm Form" id="updateForm" action="/inv/update" method="post">
                         <div class="inventoryForm form">
                             <label for="modelSelect"><b>Choose a Classification</b></label>
                             <select id="modelSelect" name="classification_id">
@@ -66,6 +67,8 @@
                             <input id="color" type="text" placeholder="enter color" name="inv_color" required
                                 value="<%= locals.inv_color%>">
 
-                            <button type="submit"> Update Vehicle </button>
+                            <button type="submit" disabled> Update Vehicle </button>
+                            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                                <% } %>>
                         </div>
                     </form>

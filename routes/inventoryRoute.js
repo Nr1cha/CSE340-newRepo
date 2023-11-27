@@ -19,7 +19,10 @@ router.get(
 );
 
 // management view
-router.get("/", utilities.handleErrors(invController.buildManagementView));
+router.get(
+  "/",
+  utilities.handleErrors(invController.buildManagementView)
+);
 
 // add classification view
 router.get(
@@ -28,7 +31,10 @@ router.get(
 );
 
 // add new inventory
-router.get("/add-inv", utilities.handleErrors(invController.buildAddInventory));
+router.get(
+  "/add-inv",
+  utilities.handleErrors(invController.buildAddInventory)
+);
 
 // Process the add classification data
 router.post(
@@ -57,5 +63,13 @@ router.get(
   "/edit/:inventory_id",
   utilities.handleErrors(invController.getVehicleById)
 );
+
+//update part 2 of the assignment
+router.post(
+  "/update/",
+  invValidator.registationRules(),
+  invValidator.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
 
 module.exports = router;
