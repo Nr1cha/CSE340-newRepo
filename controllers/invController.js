@@ -183,7 +183,8 @@ invCont.registerVehicle = async function (req, res) {
 invCont.getInventoryJSON = async (req, res, next) => {
   const classification_id = parseInt(req.params.classification_id)
   const invData = await invModel.getInventoryByClassificationId(classification_id)
-  if (invData[0].inv_id) {
+  console.log({ invData })
+  if (invData?.[0]?.inv_id) {
     return res.json(invData)
   } else {
     next(new Error("No data returned"))
@@ -273,6 +274,53 @@ invCont.updateInventory = async function (req, res) {
       classification_id
 
     });
+  }
+}
+
+
+/* ***************************
+ *  Build delete inventory view
+ * ************************** */
+invCont.deleteView = async function (req, res, next) {
+  let vehicleId = parseInt(req.params.inv_id)
+  const classData = await invModel.getClassificationIds();
+  let nav = await utilities.getNav();
+  let inventory = (await invModel.getInventoryByVehicleId(vehicleId))[0];
+  // console.log({ inventory, "message": "inventory line 202" })
+  // req.flash("notice", "This is a flash message.");
+  res.render(`${inventoryViewsPath}delete-confirm`, {
+    //path to file dont forget this
+    title: `Delete ${inventory.inv_make} ${inventory.inv_model}`,
+    nav,
+    classData,
+    errors: null,
+    ...inventory
+  });
+};
+
+
+
+/*****************************************
+ *  delete inventory data
+ * ****************************************/
+invCont.deleteItem = async function (req, res) {
+  let nav = await utilities.getNav();
+  const {
+    inv_id
+  } = req.body;
+  let inventory_id = parseInt(inv_id)
+
+  const updateResult = await invModel.deleteItem(
+    inventory_id
+  );
+
+
+  if (updateResult) {
+    req.flash("notice", `The item was successfully deleted....YAY!`)
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, the insert failed.")
+    res.redirect(`/inv/delete/${inventory_id}`);
   }
 }
 
