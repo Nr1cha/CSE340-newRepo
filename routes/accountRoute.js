@@ -3,6 +3,7 @@ const router = new express.Router()
 const utilities = require("../utilities") // this is my connection to the index.
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
+const Util = require("../utilities")
 
 
 // Route to build account login page
@@ -25,6 +26,14 @@ router.post(
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
+)
+
+router.get(
+  "/logout",
+  (req, res) => {
+    res.clearCookie("jwt");
+    res.redirect("/account/login");
+  }
 )
 
 // new route
