@@ -5,7 +5,7 @@
     </h1>
     <% } else { res.redirect('/') } %>
         <!-- firstname, lastname, email -->
-        <form class="loginForm Form" action="/account/account" method="post">
+        <form class="loginForm Form" action="/account/updateAccount" method="post">
             <div class="loginFields fields">
 
                 <label for="account_firstname"><b>Update firstname</b></label>
@@ -27,7 +27,7 @@
         </form>
 
         <!-- password -->
-        <form class="loginForm Form" action="/account/account" method="post">
+        <form class="loginForm Form" action="/account/updatePassword" method="post">
             <div class="loginFields fields">
                 <label for="accountPassword"><b>Update Password</b></label>
                 <span>There must be at least 12 characters,

@@ -115,4 +115,31 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
+
+/* ******************************
+ * Add account access Rules for validation
+ * ***************************** */
+
+
+
+
+/* ******************************
+ * Check account access
+ * ***************************** */
+
+validate.checkAccntAccess = async (req, res, next) => {
+  // check the account type
+  if (
+    res.locals.accountData.account_type === "Employee" ||
+    res.locals.accountData.account_type === "Admin"
+  ) {
+    //user has the correct type and can have access
+    return next();
+  } else {
+    // user has no access
+    req.flash("error", "Access denied. Insufficient privileges.");
+    return res.redirect("/account/login");
+  }
+};
+
 module.exports = validate;

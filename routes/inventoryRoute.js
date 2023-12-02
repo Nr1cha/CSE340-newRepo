@@ -5,6 +5,7 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities");
 const validator = require("../utilities/classification-validation");
 const invValidator = require("../utilities/inventory-validation");
+const accountValidator = require("../utilities/account-validation");
 
 // Route to build inventory by classification view
 router.get(
@@ -21,24 +22,28 @@ router.get(
 // management view
 router.get(
   "/",
+  accountValidator.checkAccntAccess,
   utilities.handleErrors(invController.buildManagementView)
 );
 
 // add classification view
 router.get(
   "/add-class",
+  accountValidator.checkAccntAccess,
   utilities.handleErrors(invController.buildAddClassificationView)
 );
 
 // add new inventory
 router.get(
   "/add-inv",
+  accountValidator.checkAccntAccess,
   utilities.handleErrors(invController.buildAddInventory)
 );
 
 // Process the add classification data
 router.post(
   "/register/classification",
+  accountValidator.checkAccntAccess,
   validator.registationRules(),
   validator.checkRegData,
   utilities.handleErrors(invController.registerClassification)
@@ -47,6 +52,7 @@ router.post(
 // Process the add_inv data
 router.post(
   "/register/vehicle",
+  accountValidator.checkAccntAccess,
   invValidator.registationRules(),
   invValidator.checkRegData,
   utilities.handleErrors(invController.registerVehicle)
@@ -61,12 +67,14 @@ router.get(
 // route for an inventory item to edit
 router.get(
   "/edit/:inventory_id",
+  accountValidator.checkAccntAccess,
   utilities.handleErrors(invController.getVehicleById)
 );
 
 //update part 2 of the assignment
 router.post(
   "/update/",
+  accountValidator.checkAccntAccess,
   invValidator.registationRules(),
   invValidator.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
@@ -75,12 +83,14 @@ router.post(
 //deliver the delete view
 router.get(
   "/delete/:inv_id",
+  accountValidator.checkAccntAccess,
   utilities.handleErrors(invController.deleteView)
 );
 
 // delete the item
 router.post(
   "/delete/",
+  accountValidator.checkAccntAccess,
   utilities.handleErrors(invController.deleteItem)
 )
 

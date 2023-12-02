@@ -36,11 +36,32 @@ router.get(
   }
 )
 
-// new route
 router.get(
   "/",
   utilities.checkLogin,
   utilities.handleErrors(accountController.accountView)
 )
+
+
+// update account
+router.get(
+  "/updateAccount/:account_id",
+  utilities.handleErrors(accountController.accountUpdateView)
+)
+
+
+// save changes to server
+router.post(
+  "/updateAccount",
+  utilities.handleErrors(accountController.updateAccountDataToDatabase)
+)
+
+// save password to database
+// router.post(
+//   "/updatePassword",
+//   utilities.handleErrors(accountController.accountUpdate) //change this
+// )
+
+
 
 module.exports = router;

@@ -2,6 +2,7 @@ const utilities = require("../utilities"); // this is my connection to the index
 const accountModel = require("../models/account-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
+const invModel = require("../models/inventory-model");
 require("dotenv").config()
 
 /* ****************************************
@@ -127,9 +128,56 @@ async function accountView(req, res) {
   res.render("account/account", {
     title: "My Account",
     nav,
-    errors: null,
+    errors: null
   });
-
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView };
+// account view controller
+async function accountUpdateView(req, res) {
+  let nav = await utilities.getNav();
+  res.render("account/updateView", {
+    title: "Update Account",
+    nav,
+    errors: null
+  });
+}
+
+/*****************************************
+ *  add new updated account to database
+ * ****************************************/
+async function updateAccountDataToDatabase(req, res) {
+  let nav = await utilities.getNav();
+  const {
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email,
+  } = req.body;
+
+  const regResult = await accountModel.updateAccnt(
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email,
+  );
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you updated ${account_firstname}.`
+    );
+    res.status(201).render("account/account", {
+      title: "Login",
+      nav,
+    });
+  } else {
+    req.flash("notice", "Sorry, the update failed.");
+    res.status(501).render("account/account", {
+      title: "account update",
+      nav,
+    });
+  }
+}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView, accountUpdateView, updateAccountDataToDatabase };

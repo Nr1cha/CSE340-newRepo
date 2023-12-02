@@ -5,7 +5,7 @@
     <div id="tools">
         <% if (locals.loggedin) { %>
             <% if (locals.accountData) { %>
-                <span><a href="https://developer.mozilla.org/en-US/">Welcome</a>, <%= accountData.account_firstname %>
+                <span><a href="/account/">Welcome</a>, <%= accountData.account_firstname %>
                 </span>
                 <a title="Click to log out" href="/account/logout"> Logout</a>
                 <% } else { %>
