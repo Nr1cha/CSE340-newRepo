@@ -43,24 +43,24 @@ router.get(
 )
 
 
-// update account
+// update account view
 router.get(
   "/updateAccount/:account_id",
   utilities.handleErrors(accountController.accountUpdateView)
 )
 
 
-// save changes to server
+// process update changes to database
 router.post(
   "/updateAccount",
   utilities.handleErrors(accountController.updateAccountDataToDatabase)
 )
 
 // save password to database
-// router.post(
-//   "/updatePassword",
-//   utilities.handleErrors(accountController.accountUpdate) //change this
-// )
+router.post(
+  "/updatePassword",
+  utilities.handleErrors(accountController.updatePasswordDataToDatabase) //change this
+)
 
 
 

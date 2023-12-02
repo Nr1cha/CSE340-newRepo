@@ -180,4 +180,55 @@ async function updateAccountDataToDatabase(req, res) {
 }
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView, accountUpdateView, updateAccountDataToDatabase };
+/*****************************************
+ *  add new updated password to database
+ * ****************************************/
+async function updatePasswordDataToDatabase(req, res) {
+  let nav = await utilities.getNav();
+  const {
+    account_id,
+    account_password
+  } = req.body;
+  let hashedPassword;
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
+  } catch (error) {
+    req.flash(
+      "notice",
+      "Sorry, there was an error processing the password update."
+    );
+    res.status(500).render("account/updateView", {
+      title: "Update Account",
+      nav,
+      errors: null,
+    });
+  }
+
+
+  const regResult = await accountModel.updatePass(
+    account_id,
+    hashedPassword
+  );
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you updated your password.`
+    );
+    res.status(201).render("account/account", {
+      title: "Update Account",
+      nav,
+    });
+  } else {
+    req.flash("notice", "Sorry, the update failed.");
+    res.status(501).render("account/account", {
+      title: "Update Account",
+      nav,
+    });
+  }
+}
+
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView, accountUpdateView, updateAccountDataToDatabase, updatePasswordDataToDatabase };

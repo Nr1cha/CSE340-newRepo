@@ -44,7 +44,7 @@ async function updatePass(account_id, account_password) {
     SET account_password = $1 
     WHERE account_id = $2 RETURNING *
     `
-    return await pool.query(sqlPass, [account_id, account_password])
+    return await pool.query(sqlPass, [account_password, account_id])
   } catch (error) {
     return error.message
   }
