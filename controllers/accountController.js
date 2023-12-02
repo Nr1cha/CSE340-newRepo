@@ -126,7 +126,7 @@ async function accountLogin(req, res) {
 async function accountView(req, res) {
   let nav = await utilities.getNav();
   res.render("account/account", {
-    title: "My Account",
+    title: "Account Management",
     nav,
     errors: null
   });

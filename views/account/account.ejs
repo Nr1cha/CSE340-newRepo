@@ -6,10 +6,11 @@
     <% } else { res.redirect('/') } %>
         <h2>Welcome <%= accountData.account_firstname %>
         </h2>
-        <p><a href="/account/updateAccount/<%= locals.accountData.account_id %>">update account
+        <p>You're logged in</p>
+        <p><a href="/account/updateAccount/<%= locals.accountData.account_id %>">Edit account
                 information</a></p>
         <% if (locals.accountData.account_type!=="Client" ) { %>
             <h3>Inventory Management</h3>
-            <p> <a href="/inv/">Access Inventory Management</a> </p>
+            <p> <a href="/inv/">Manage Inventory</a> </p>
             <% } %>
                 <%- messages() %>

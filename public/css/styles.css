@@ -24,10 +24,10 @@ body {
   border-color: yellowgreen;
 }
 
-#wrapper>main>p {
+/* #wrapper>main>p {
   font-size: 2em;
   font-weight: bold;
-}
+} */
 
 #wrapper>main>h1 { 
   text-align: center;
