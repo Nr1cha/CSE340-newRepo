@@ -26,7 +26,8 @@ async function updateAccnt(account_id, account_firstname, account_lastname, acco
     account_email = $3 
     WHERE account_id = $4 RETURNING *
     `
-    return await pool.query(sqlAccnt, [account_firstname, account_lastname, account_email, account_id])
+    const result = await pool.query(sqlAccnt, [account_firstname, account_lastname, account_email, account_id])
+    return result.rows[0];
   } catch (error) {
     return error.message
   }
@@ -59,9 +60,9 @@ async function updatePass(account_id, account_password) {
  * ********************* */
 async function checkExistingEmail(account_email) {
   try {
-    const sql = "SELECT * FROM account WHERE account_email = $1"
+    const sql = "SELECT account_id FROM account WHERE account_email = $1"
     const email = await pool.query(sql, [account_email])
-    return email.rowCount
+    return email.rows?.[0]?.account_id
   } catch (error) {
     return error.message
   }

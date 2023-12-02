@@ -162,14 +162,14 @@ async function updateAccountDataToDatabase(req, res) {
   );
 
   if (regResult) {
+    // const accountData = await accountModel.getAccountByEmail(account_email)
+    const accessToken = jwt.sign(regResult, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
     req.flash(
       "notice",
       `Congratulations, you updated ${account_firstname}.`
     );
-    res.status(201).render("account/account", {
-      title: "Login",
-      nav,
-    });
+    res.redirect("/account/");
   } else {
     req.flash("notice", "Sorry, the update failed.");
     res.status(501).render("account/account", {

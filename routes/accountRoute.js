@@ -53,12 +53,16 @@ router.get(
 // process update changes to database
 router.post(
   "/updateAccount",
+  regValidate.updateRegistationRules(),
+  regValidate.checkUpdateData,
   utilities.handleErrors(accountController.updateAccountDataToDatabase)
 )
 
 // save password to database
 router.post(
   "/updatePassword",
+  regValidate.updateLoginRules(),
+  regValidate.checkUpdateData,
   utilities.handleErrors(accountController.updatePasswordDataToDatabase) //change this
 )
 
