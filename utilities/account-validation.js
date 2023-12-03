@@ -97,6 +97,28 @@ validate.checkUpdateData = async (req, res, next) => {
 
 
 
+/* ******************************
+ * Check password and return errors or continue to registration
+ * ***************************** */
+validate.checkPasswordData = async (req, res, next) => {
+  const { account_password } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/updateView", {
+      errors,
+      title: "Update Account",
+      nav,
+      account_password,
+    });
+    return;
+  }
+  next();
+};
+
+
+
 /*  **********************************
  *  Registration Data Validation Rules
  * ********************************* */
@@ -163,7 +185,6 @@ validate.loginRules = () => {
 
 validate.updateLoginRules = () => {
   return [
-    // password is required and must be strong password
     body("account_password")
       .trim()
       .isStrongPassword({

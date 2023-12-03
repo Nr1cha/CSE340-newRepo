@@ -28,6 +28,7 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
+// logout and clear the jwt
 router.get(
   "/logout",
   (req, res) => {
@@ -36,6 +37,7 @@ router.get(
   }
 )
 
+// show the account view
 router.get(
   "/",
   utilities.checkLogin,
@@ -58,12 +60,12 @@ router.post(
   utilities.handleErrors(accountController.updateAccountDataToDatabase)
 )
 
-// save password to database
+// save password change to database
 router.post(
   "/updatePassword",
-  regValidate.updateLoginRules(),
-  regValidate.checkUpdateData,
-  utilities.handleErrors(accountController.updatePasswordDataToDatabase) //change this
+  regValidate.updateLoginRules(), // password validation rules
+  regValidate.checkPasswordData, // check password things from the database
+  utilities.handleErrors(accountController.updatePasswordDataToDatabase)
 )
 
 
