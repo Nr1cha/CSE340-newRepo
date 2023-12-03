@@ -73,7 +73,7 @@ router.get(
 
 //update part 2 of the assignment
 router.post(
-  "/update/",
+  "/update",
   accountValidator.checkAccntAccess,
   invValidator.registationRules(),
   invValidator.checkUpdateData,

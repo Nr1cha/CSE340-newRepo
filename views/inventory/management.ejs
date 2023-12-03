@@ -6,24 +6,24 @@
     <% } else { res.redirect('/') } %>
 
         <%- messages() %>
+            <form class="Form managementView">
+                <ul>
+                    <li><a href="/inv/add-class">Add Classification</a></li>
+                    <li><a href="/inv/add-inv">Add Inventory</a></li>
+                </ul>
+                <h2>Manage Inventory</h2>
+                <p>select a classification from the list.</p>
 
-            <ul class="Form managementView">
-                <li><a href="/inv/add-class">Add Classification</a></li>
-                <li><a href="/inv/add-inv">Add Inventory</a></li>
-            </ul>
-            <h2>Manage Inventory</h2>
-            <p>select a classification from the list.</p>
+                <select id="classificationList" name="classification_id">
+                    <% classData.forEach(classification=> { %>
+                        <option value="<%= classification.id %>" <% if(classification.id==locals.classification_id){ %>
+                            selected <% } %> >
+                                <%= classification.name %>
+                        </option>
+                        <% }); %>
+                </select>
 
-            <select id="classificationList" name="classification_id">
-                <% classData.forEach(classification=> { %>
-                    <option value="<%= classification.id %>" <% if(classification.id==locals.classification_id){ %>
-                        selected <% } %> >
-                            <%= classification.name %>
-                    </option>
-                    <% }); %>
-            </select>
-
-            <table id="inventoryDisplay"></table>
-            <noscript>JavaScript must be enabled to use this page.</noscript>
-
+                <table id="inventoryDisplay"></table>
+                <noscript>JavaScript must be enabled to use this page.</noscript>
+            </form>
             <script src="../../js/inventory.js"></script>

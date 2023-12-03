@@ -24,12 +24,12 @@ validate.registationRules = () => {
 
     body("inv_make")
       .trim()
-      .isLength({ min: 3 })
+      .isLength({ min: 2 })
       .withMessage("Please provide a valid make."),
 
     body("inv_model")
       .trim()
-      .isLength({ min: 3 })
+      .isLength({ min: 2 })
       .withMessage("Please provide a valid model."),
 
     body("inv_year")

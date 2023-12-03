@@ -5,39 +5,43 @@
     </h1>
     <% } else { res.redirect('/') } %>
         <form class="loginForm Form" action="/account/register" method="post">
-            <div class="loginFields fields">
-                <label for="name"><b>First name</b></label>
-                <input type="text" placeholder="Enter first name" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>" >
+            <%- messages() %>
+                <% if (errors) { %>
+                    <ul class="notice">
+                        <% errors.array().forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
+                        <div class="loginFields fields">
+                            <label for="accountFirstname"><b>First name</b></label>
+                            <input type="text" placeholder="Enter first name" name="account_firstname"
+                                id="accountFirstname" required value="<%= locals.account_firstname %>">
 
-                <label for="name"><b>Last name</b></label>
-                <input type="text" placeholder="Enter last name" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>" >
+                            <label for="accountLastname"><b>Last name</b></label>
+                            <input type="text" placeholder="Enter last name" name="account_lastname"
+                                id="accountLastname" required value="<%= locals.account_lastname %>">
 
-                <label for="email"><b>Email address</b></label>
-                <input type="email" placeholder="Enter Email" name="account_email" id="accountEmail" required value="<%= locals.account_email %>" >
+                            <label for="accountEmail"><b>Email address</b></label>
+                            <input type="email" placeholder="Enter Email" name="account_email" id="accountEmail"
+                                required value="<%= locals.account_email %>">
 
 
-                <label for="accountPassword"><b>Password</b></label><span>There must be at least 12 characters, one must
-                    be a number, one must be a lowercase letter, one must be a capital letter, and one must be a
-                    non-alphanumeric character.</span>
-                <input id="accountPassword" type="password" placeholder="Enter Password" name="account_password"
-                    required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                            <label for="accountPassword"><b>Password</b></label><span>There must be at least 12
+                                characters, one must
+                                be a number, one must be a lowercase letter, one must be a capital letter, and one must
+                                be a
+                                non-alphanumeric character.</span>
+                            <input id="accountPassword" type="password" placeholder="Enter Password"
+                                name="account_password" required
+                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-                <button type="submit">Register</button>
-            </div>
+                            <button type="submit">Register</button>
+                        </div>
 
-            <div class="container" style="background-color:#f1f1f1">
-                <span class="accnt">No account? <a href="/account/register">Sign-up</a></span>
-            </div>
+                        <div class="container" style="background-color:#f1f1f1">
+                            <span class="accnt">No account? <a href="/account/register">Sign-up</a></span>
+                        </div>
         </form>
-
-
-        <%- messages() %>
-            <% if (errors) { %>
-                <ul class="notice">
-                    <% errors.array().forEach(error=> { %>
-                        <li>
-                            <%= error.msg %>
-                        </li>
-                        <% }) %>
-                </ul>
-                <% } %>

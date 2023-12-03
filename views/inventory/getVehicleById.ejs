@@ -5,18 +5,18 @@
     </h1>
     <% } else { res.redirect('/') } %>
 
-        <%- messages() %>
-            <% if (errors) { %>
-                <ul class="notice">
-                    <% errors.array().forEach(error=> { %>
-                        <li>
-                            <%= error.msg %>
-                        </li>
-                        <% }) %>
-                </ul>
-                <% } %>
 
-                    <form class="inventoryForm Form" id="updateForm" action="/inv/update" method="post">
+        <form class="inventoryForm Form" id="updateForm" action="/inv/update" method="post">
+            <%- messages() %>
+                <% if (errors) { %>
+                    <ul class="notice">
+                        <% errors.array().forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
                         <div class="inventoryForm form">
                             <label for="modelSelect"><b>Choose a Classification</b></label>
                             <select id="modelSelect" name="classification_id">
@@ -49,11 +49,11 @@
                             <!-- come back to image -->
                             <label for="image"><b>Image Path</b></label>
                             <input id="image" type="text" placeholder="/images/vehicles/imageExample.png"
-                                name="inv_image" required value="/images/vehicles/no-image.png">
+                                name="inv_image" required value="<%= locals.inv_image %>">
 
                             <label for="thumbnail"><b>Thumbnail Path</b></label>
                             <input id="thumbnail" type="text" placeholder="/images/vehicles/thumbnail.png"
-                                name="inv_thumbnail" required value="/images/vehicles/no-image-tn.png">
+                                name="inv_thumbnail" required value="<%= locals.inv_thumbnail %>">
 
                             <label for="price"><b>Price</b></label>
                             <input id="price" type="number" min="0" step=".01" placeholder="decimal or integer"
@@ -71,4 +71,4 @@
                             <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
                                 <% } %>>
                         </div>
-                    </form>
+        </form>

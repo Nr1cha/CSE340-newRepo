@@ -4,32 +4,32 @@
         <%=title %>
     </h1>
     <% } else { res.redirect('/') } %>
-        <% if (errors) { %>
-            <ul class="notice">
-                <% errors.array().forEach(error=> { %>
-                    <li>
-                        <%= error.msg %>
-                    </li>
-                    <% }) %>
-            </ul>
-            <% } %>
-                <%- messages() %>
 
-                    <!-- firstname, lastname, email -->
-                    <form class="loginForm Form" action="/account/updateAccount" method="post">
+        <!-- firstname, lastname, email -->
+        <form class="loginForm Form" action="/account/updateAccount" method="post">
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+                    <%- messages() %>
                         <div class="loginFields fields">
 
                             <label for="account_firstname"><b>Update firstname</b></label>
-                            <input value="<%= locals.accountData.account_firstname %>" type="text"
-                                name="account_firstname" required>
+                            <input id="account_firstname" value="<%= locals.accountData.account_firstname %>"
+                                type="text" name="account_firstname" required>
 
                             <label for="account_lastname"><b>Update lastname</b></label>
-                            <input value="<%= locals.accountData.account_lastname %>" type="text"
+                            <input id="account_lastname" value="<%= locals.accountData.account_lastname %>" type="text"
                                 name="account_lastname" required>
 
                             <label for="account_email"><b>Update email</b></label>
-                            <input value="<%= locals.accountData.account_email %>" type="email" name="account_email"
-                                required>
+                            <input id="account_email" value="<%= locals.accountData.account_email %>" type="email"
+                                name="account_email" required>
 
                             <input type="hidden" value="<%= locals.accountData.account_id %>" name="account_id">
                             <button type="submit">update account info</button>
@@ -38,21 +38,21 @@
                         <div class="container" style="background-color:#f1f1f1">
                             <span class="accnt">No account? <a href="/account/registration">Sign-up</a></span>
                         </div>
-                    </form>
+        </form>
 
-                    <!-- password -->
-                    <form class="loginForm Form" action="/account/updatePassword" method="post">
-                        <div class="loginFields fields">
-                            <label for="accountPassword"><b>Update Password</b></label>
-                            <span>There must be at least 12 characters,
-                                one must be a number, one must be a lowercase letter, one must be a capital letter, and
-                                one
-                                must be
-                                a
-                                non-alphanumeric character.</span>
-                            <input type="password" name="account_password" required
-                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-                            <input type="hidden" value="<%= locals.accountData.account_id %>" name="account_id">
-                            <button type="submit">update password</button>
-                        </div>
-                    </form>
+        <!-- password -->
+        <form class="loginForm Form" action="/account/updatePassword" method="post">
+            <div class="loginFields fields">
+                <label for="accountPassword"><b>Update Password</b></label>
+                <span>There must be at least 12 characters,
+                    one must be a number, one must be a lowercase letter, one must be a capital letter, and
+                    one
+                    must be
+                    a
+                    non-alphanumeric character.</span>
+                <input id="accountPassword" type="password" name="account_password" required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                <input type="hidden" value="<%= locals.accountData.account_id %>" name="account_id">
+                <button type="submit">update password</button>
+            </div>
+        </form>

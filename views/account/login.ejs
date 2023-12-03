@@ -5,23 +5,22 @@
     </h1>
     <% } else { res.redirect('/') } %>
         <form class="loginForm Form" action="/account/login" method="post">
-            <div class="loginFields fields">
-                <label for="accountEmail"><b>Email</b></label>
-                <input type="email" placeholder="Enter Email" name="account_email" required>
+            <%- messages() %>
+                <div class="loginFields fields">
+                    <label for="accountEmail"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="account_email" required>
 
-                <label for="accountPassword"><b>Password</b></label><span>There must be at least 12 characters, one must
-                    be a number, one must be a lowercase letter, one must be a capital letter, and one must be a
-                    non-alphanumeric character.</span>
-                <input type="password" placeholder="Enter Password" name="account_password" required
-                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                    <label for="accountPassword"><b>Password</b></label><span>There must be at least 12 characters, one
+                        must
+                        be a number, one must be a lowercase letter, one must be a capital letter, and one must be a
+                        non-alphanumeric character.</span>
+                    <input type="password" placeholder="Enter Password" name="account_password" required
+                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-                <button type="submit">Login</button>
-            </div>
+                    <button type="submit">Login</button>
+                </div>
 
-            <div class="container" style="background-color:#f1f1f1">
-                <span class="accnt">No account? <a href="/account/registration">Sign-up</a></span>
-            </div>
+                <div class="container" style="background-color:#f1f1f1">
+                    <span class="accnt">No account? <a href="/account/registration">Sign-up</a></span>
+                </div>
         </form>
-
-
-        <%- messages() %>

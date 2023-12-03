@@ -4,18 +4,18 @@
     </h1>
     <% } else { res.redirect('/') } %>
 
-        <%- messages() %>
-            <% if (errors) { %>
-                <ul class="notice">
-                    <% errors.array().forEach(error=> { %>
-                        <li>
-                            <%= error.msg %>
-                        </li>
-                        <% }) %>
-                </ul>
-                <% } %>
 
-                    <form class="inventoryForm Form" id="delete" action="/inv/delete" method="post">
+        <form class="inventoryForm Form" id="delete" action="/inv/delete" method="post">
+            <%- messages() %>
+                <% if (errors) { %>
+                    <ul class="notice">
+                        <% errors.array().forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
                         <div class="inventoryForm form">
                             <label for="modelSelect"><b>Choose a Classification</b></label>
                             <select id="modelSelect" name="classification_id">
@@ -49,4 +49,4 @@
 
                                     <button type="submit"> Delete Vehicle </button>
                         </div>
-                    </form>
+        </form>
