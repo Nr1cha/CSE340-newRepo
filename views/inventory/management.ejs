@@ -5,8 +5,8 @@
     </h1>
     <% } else { res.redirect('/') } %>
 
-        <%- messages() %>
-            <form class="Form managementView">
+        <form class="Form managementView">
+            <%- messages() %>
                 <ul>
                     <li><a href="/inv/add-class">Add Classification</a></li>
                     <li><a href="/inv/add-inv">Add Inventory</a></li>
@@ -25,5 +25,5 @@
 
                 <table id="inventoryDisplay"></table>
                 <noscript>JavaScript must be enabled to use this page.</noscript>
-            </form>
-            <script src="../../js/inventory.js"></script>
+        </form>
+        <script src="../../js/inventory.js"></script>

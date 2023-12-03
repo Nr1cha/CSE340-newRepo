@@ -246,7 +246,7 @@ li a {
   max-width: 40%;
   margin: auto;
 }
-.Form > li > a{
+.Form > ul > li > a{
   color: black;
 }
 

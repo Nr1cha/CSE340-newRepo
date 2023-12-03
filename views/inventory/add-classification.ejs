@@ -7,19 +7,19 @@
 
 
 
-        <%- messages() %>
-            <% if (errors) { %>
-                <ul class="notice">
-                    <% errors.array().forEach(error=> { %>
-                        <li>
-                            <%= error.msg %>
-                        </li>
-                        <% }) %>
-                </ul>
-                <% } %>
 
-                    <div class="Form">
-                        <form action="/inv/register/classification" method="post">
+        <form action="/inv/register/classification" method="post">
+            <div class="Form">
+                <%- messages() %>
+                    <% if (errors) { %>
+                        <ul class="notice">
+                            <% errors.array().forEach(error=> { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
                             <p>Field is required</p>
                             <p>Classification Name</p>
                             <label for="addClassification">Name must be alphabetic characters only.
@@ -28,5 +28,5 @@
                                     value="<%= locals.classification_name %>" required>
                             </label>
                             <button type="submit">Add Classification</button>
-                        </form>
-                    </div>
+        </form>
+        </div>
